@@ -1,11 +1,11 @@
 package albe.model;
-
-import java.util.ArrayList;
+import java.util.UUID;
+import java.util.List;
 
 public class Hub extends PassiveElement{
-    public Hub(Double timeDelay, Double costs, ArrayList<PathElement> connections){
+    public Hub(Double timeDelay, Double costs, UUID id, List<PathElement> connections){
 
-        super(timeDelay, costs, connections);
+        super(timeDelay, costs, id, connections);
     }
 
 }

@@ -1,18 +1,19 @@
 package albe.model;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class PassiveElement implements PathElement{
     protected Double timeDelay;
     protected Double costs;
-    protected ArrayList<PathElement> connections;
+    protected List<PathElement> connections;
     protected UUID id;
 
-    PassiveElement(Double timeDelay, Double costs, ArrayList<PathElement> connections){
+    PassiveElement(Double timeDelay, Double costs, UUID id, List<PathElement> connections){
         this.timeDelay = timeDelay;
         this.costs = costs;
+        this.id = id;
+        //this.id = UUID.randomUUID();
         this.connections = connections;
-        this.id = UUID.randomUUID();
     }
 
     public Double getTimeDelay(){
@@ -27,7 +28,7 @@ public class PassiveElement implements PathElement{
     public String getID(){
         return id.toString();
     }
-    public ArrayList<PathElement> getConnections(){
+    public List<PathElement> getConnections(){
         return connections;
     }
 

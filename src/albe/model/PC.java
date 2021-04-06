@@ -1,11 +1,11 @@
 package albe.model;
-
-import java.util.ArrayList;
+import java.util.UUID;
+import java.util.List;
 
 public class PC extends ActiveElement{
-    public PC(Double timeDelay, Double costs, ArrayList<PathElement> connections, ArrayList<IPAddress> ipAddress){
+    public PC(Double timeDelay, Double costs, UUID id, List<PathElement> connections, List<IPAddress> ipAddress){
 
-        super(timeDelay, costs, connections, ipAddress);
+        super(timeDelay, costs, id, connections, ipAddress);
     }
 
 }

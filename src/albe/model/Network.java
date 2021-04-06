@@ -3,7 +3,8 @@ import java.util.*;
 
 public class Network implements RouteProvider{
     private List<PathElement> pathElementList; //список эл данной сети (список из экземпляров классов Hub, PC, Switch и т д)
-    Network(){
+    public Network(){
+
         pathElementList = new ArrayList<PathElement>();
     }
     //получить все элементы данной сети с их id (<id экземпляра класса, этот экземпляр>)
@@ -23,6 +24,11 @@ public class Network implements RouteProvider{
     //удалить эл из pathElementList
     public void remove(PathElement elem){
         if (!pathElementList.contains(elem)) throw new IllegalArgumentException();
-        else pathElementList.remove(elem);
+        else {
+            for (PathElement pathEl: pathElementList) {
+                if (pathEl.getConnections().contains(elem)) pathEl.removeConnection(elem);
+            }
+            pathElementList.remove(elem);
+        }
     }
 }

@@ -1,17 +1,19 @@
 package albe.model;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 public class ActiveElement implements PathElement{
     protected Double timeDelay;
     protected Double costs;
     protected UUID id;
-    protected ArrayList<PathElement> connections;
-    protected ArrayList<IPAddress> ipAddress;
+    protected List<PathElement> connections;
+    protected List<IPAddress> ipAddress;
 
-    ActiveElement(Double timeDelay, Double costs, ArrayList<PathElement> connections, ArrayList<IPAddress> ipAddress){
+    ActiveElement(Double timeDelay, Double costs, UUID id, List<PathElement> connections, List<IPAddress> ipAddress){
         this.timeDelay = timeDelay;
         this.costs = costs;
-        this.id = UUID.randomUUID();
+        //this.id = UUID.randomUUID();
+        this.id = id;
         this.connections = connections;
         this.ipAddress = ipAddress;
     }
@@ -29,11 +31,11 @@ public class ActiveElement implements PathElement{
         return id.toString();
     }
 
-    public ArrayList<PathElement> getConnections(){
+    public List<PathElement> getConnections(){
         return connections;
     }
 
-    public ArrayList<IPAddress> getIP(){
+    public List<IPAddress> getIP(){
         return this.ipAddress;
     }
 
