@@ -3,33 +3,28 @@ import java.util.*;
 import java.util.UUID;
 
 public class Network implements RouteProvider{
-    private List<PathElement> pathElementList; //список эл данной сети (список из экземпляров классов Hub, PC, Switch и т д)
+    private Map<UUID, PathElement> pathElementMap;
     public Network(){
-
-        pathElementList = new ArrayList<PathElement>();
+        pathElementMap = new HashMap<UUID,PathElement>();
     }
     //получить все элементы данной сети с их id (<id экземпляра класса, этот экземпляр>)
     public Map<UUID, PathElement> getPathElements(){
-        Map<UUID, PathElement> networkElems = new HashMap<UUID,PathElement>();
-        for(PathElement elem: pathElementList){
-            networkElems.put(elem.getID(), elem);
-        }
-        return networkElems;
+        return pathElementMap;
     }
 
-    //добавить эл в pathElementList
-    public void add(PathElement elem){
-        if (elem == null) throw new IllegalArgumentException();
-        else pathElementList.add(elem);
+    public void add(UUID id, PathElement pathElement){
+        if (pathElement == null || id == null) throw new IllegalArgumentException();
+        else pathElementMap.put(id, pathElement);
     }
-    //удалить эл из pathElementList
-    public void remove(PathElement elem){
-        if (!pathElementList.contains(elem)) throw new IllegalArgumentException();
+
+    public void remove(UUID id){
+        if (!pathElementMap.containsKey(id)) throw new IllegalArgumentException();
         else {
-            for (PathElement pathEl: pathElementList) {
-                if (pathEl.getConnections().contains(elem)) pathEl.removeConnection(elem);
+            PathElement elementValue = pathElementMap.get(id);
+            for (PathElement elem: pathElementMap.values()) {
+                if (elem.getConnections().contains(elementValue)) elem.removeConnection(elementValue);
             }
-            pathElementList.remove(elem);
+            pathElementMap.remove(id);
         }
     }
 }
