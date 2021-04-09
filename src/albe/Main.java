@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.ResolvedType;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.util.*;
 
 public class Main {
@@ -16,12 +17,23 @@ public class Main {
 
         UUID id2 = PathElement.generateID();
         List <PathElement> list2 = new ArrayList<>();
-        Router router = new Router(0.2, 0.3, id2, list2, null);
+        Router router = new Router(0.2, 0.3, id2, list2, InetAddress.getLocalHost());
 
         Network network = new Network();
         network.add(id1, cabel);
         network.add(id2, router);
         System.out.println(network.getPathElements());
+        System.out.println(network.getIpAddressUUIDMap());
+
+        cabel.addConnection(router);
+        System.out.println(cabel.getConnections());
+        System.out.println(router.getConnections());
+
+        network.remove(id2);
+        System.out.println(network.getPathElements());
+        System.out.println(cabel.getConnections());
+        System.out.println(network.getIpAddressUUIDMap());
+
 
     }
 }
