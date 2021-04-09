@@ -1,10 +1,12 @@
 package albe;
 import albe.model.*;
-import sun.nio.ch.Net;
+import com.fasterxml.jackson.core.*;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -29,5 +31,10 @@ public class Main {
         network.remove(router);
         System.out.println(network.getPathElements());
         System.out.println(cabel.getConnections());
+
+        Map<UUID, PathElement> graph = network.getPathElements();
+        System.out.println(graph.get(id1));
+
     }
 }
+

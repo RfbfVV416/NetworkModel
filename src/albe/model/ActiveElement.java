@@ -27,9 +27,7 @@ public class ActiveElement implements PathElement{
     public String getInfo(){
         return "This is an active element";
     }
-    public String getID(){
-        return id.toString();
-    }
+    public UUID getID(){ return id; }
 
     public List<PathElement> getConnections(){
         return connections;

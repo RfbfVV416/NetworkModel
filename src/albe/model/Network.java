@@ -1,5 +1,6 @@
 package albe.model;
 import java.util.*;
+import java.util.UUID;
 
 public class Network implements RouteProvider{
     private List<PathElement> pathElementList; //список эл данной сети (список из экземпляров классов Hub, PC, Switch и т д)
@@ -8,8 +9,8 @@ public class Network implements RouteProvider{
         pathElementList = new ArrayList<PathElement>();
     }
     //получить все элементы данной сети с их id (<id экземпляра класса, этот экземпляр>)
-    public Map<String, PathElement> getPathElements(){
-        Map<String, PathElement> networkElems = new HashMap<String,PathElement>();
+    public Map<UUID, PathElement> getPathElements(){
+        Map<UUID, PathElement> networkElems = new HashMap<UUID,PathElement>();
         for(PathElement elem: pathElementList){
             networkElems.put(elem.getID(), elem);
         }

@@ -12,7 +12,6 @@ public class PassiveElement implements PathElement{
         this.timeDelay = timeDelay;
         this.costs = costs;
         this.id = id;
-        //this.id = UUID.randomUUID();
         this.connections = connections;
     }
 
@@ -25,9 +24,7 @@ public class PassiveElement implements PathElement{
     public String getInfo(){
         return "This is a passive element";
     }
-    public String getID(){
-        return id.toString();
-    }
+    public UUID getID(){ return id; }
     public List<PathElement> getConnections(){
         return connections;
     }
