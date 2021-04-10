@@ -1,17 +1,20 @@
 package albe.model;
+import java.lang.instrument.IllegalClassFormatException;
 import java.net.InetAddress;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import albe.model.Cable;
 
 
 public class ActiveElement implements PathElement{
     protected Double timeDelay;
     protected Double costs;
     protected UUID id;
-    protected List<PathElement> connections;
+    protected List<Cable> connections;
     protected InetAddress ipAddress;
 
-    ActiveElement(Double timeDelay, Double costs, UUID id, List<PathElement> connections, InetAddress ipAddress){
+    public ActiveElement(Double timeDelay, Double costs, UUID id, List<Cable> connections, InetAddress ipAddress){
         this.timeDelay = timeDelay;
         this.costs = costs;
         this.id = id;
@@ -29,28 +32,29 @@ public class ActiveElement implements PathElement{
         return "This is an active element";
     }
     public UUID getID(){ return id; }
-
-    public List<PathElement> getConnections(){
+    public List<Cable> getConnections(){
         return connections;
     }
-
     public InetAddress getIP(){
         return ipAddress;
     }
 
-    public void addConnection(PathElement pathElement){
-        if (pathElement == null) throw new IllegalArgumentException();
-        else if (!connections.contains(pathElement)){
-            connections.add(pathElement);
-            pathElement.addConnection(this);
+
+    public void addConnection(Cable cable){
+        if (cable == null) throw new IllegalArgumentException();
+        else {
+            if (!connections.contains(cable)){
+                connections.add(cable);
+                //if (!cable.getConnections().contains(this))
+                    cable.addConnection(this);
+            }
         }
     }
 
-    public void removeConnection (PathElement pathElement){
-        if (connections.contains(pathElement)){
-            connections.remove(pathElement);
-            pathElement.removeConnection(this);
+    public void removeConnection (Cable cable){
+        if (connections.contains(cable)){
+            connections.remove(cable);
+            cable.removeConnection(this);
         }
     }
-
 }

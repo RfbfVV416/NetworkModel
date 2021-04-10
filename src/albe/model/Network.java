@@ -6,9 +6,11 @@ import java.net.InetAddress;
 public class Network implements RouteProvider{
     private Map<UUID, PathElement> pathElementMap;
     private Map<InetAddress, UUID> ipAddressUUIDMap;
+    private List<Cable> cabelsList;
     public Network(){
         pathElementMap = new HashMap<UUID,PathElement>();
         ipAddressUUIDMap = new HashMap<InetAddress, UUID>();
+        cabelsList = new ArrayList<Cable>();
     }
     //получить все элементы данной сети с их id (<id экземпляра класса, этот экземпляр>)
     public Map<UUID, PathElement> getPathElements(){
@@ -17,6 +19,10 @@ public class Network implements RouteProvider{
 
     public Map<InetAddress, UUID> getIpAddressUUIDMap(){
         return ipAddressUUIDMap;
+    }
+
+    public List<Cable> getCabelsList(){
+        return cabelsList;
     }
 
     public void add(UUID id, PathElement pathElement){
@@ -30,15 +36,20 @@ public class Network implements RouteProvider{
     }
 
     public void remove(UUID id){
-        if (!pathElementMap.containsKey(id)) throw new IllegalArgumentException();
-        else {
-            PathElement elementValue = pathElementMap.get(id);
-            if (elementValue instanceof ActiveElement)
-                ipAddressUUIDMap.remove(((ActiveElement) elementValue).ipAddress);
-            for (PathElement elem: pathElementMap.values()) {
-                if (elem.getConnections().contains(elementValue)) elem.removeConnection(elementValue);
-            }
-            pathElementMap.remove(id);
-        }
+//        if (!pathElementMap.containsKey(id)) throw new IllegalArgumentException();
+//        else {
+//            PathElement elementValue = pathElementMap.get(id);
+//            if (elementValue instanceof ActiveElement)
+//                ipAddressUUIDMap.remove(((ActiveElement) elementValue).ipAddress);
+//            for (Cable cable: cabelsList) {
+//                if (cable.getConnections().contains(elementValue)){
+//
+//                }
+//            }
+//            for (PathElement elem: pathElementMap.values()) {
+//                if (elem.getConnections().contains(elementValue)) elem.removeConnection(elementValue);
+//            }
+//            pathElementMap.remove(id);
+//        }
     }
 }

@@ -11,30 +11,66 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        List <PathElement> list1 = new ArrayList<>();
+        List <Cable> list1 = new ArrayList<>();
         UUID id1 = PathElement.generateID();
-        Cable cabel = new Cable(0.1, 0.2, id1, list1);
+        Switch switch1 = new Switch(0.2, 0.3, id1, list1, InetAddress.getLocalHost());
 
         UUID id2 = PathElement.generateID();
-        List <PathElement> list2 = new ArrayList<>();
+        List <Cable> list2 = new ArrayList<>();
         Router router = new Router(0.2, 0.3, id2, list2, InetAddress.getLocalHost());
 
-        Network network = new Network();
-        network.add(id1, cabel);
-        network.add(id2, router);
-        System.out.println(network.getPathElements());
-        System.out.println(network.getIpAddressUUIDMap());
+        List <Cable> list3 = new ArrayList<>();
+        UUID id3 = PathElement.generateID();
+        Firewall firewall = new Firewall(0.2, 0.3, id1, list3, InetAddress.getLocalHost());
 
-        cabel.addConnection(router);
-        System.out.println(cabel.getConnections());
+        List <PathElement> cableList = new ArrayList<>();
+        Cable coaxialCable = new CoaxialCable(0.1,0.7, cableList);
+        switch1.addConnection(coaxialCable);
+        router.addConnection(coaxialCable);
+        System.out.println(switch1.getConnections());
         System.out.println(router.getConnections());
+        System.out.println(coaxialCable.getConnections());
 
-        network.remove(id2);
-        System.out.println(network.getPathElements());
-        System.out.println(cabel.getConnections());
-        System.out.println(network.getIpAddressUUIDMap());
 
+
+
+        //создание объекта для сериализации в JSON
+        //Cat cat = new Cat();
+        //cat.name = "Murka";
+        //cat.age = 5;
+        //cat.weight = 4;
+
+
+       // FileOutputStream w = new FileOutputStream("C://Users//bebes//IdeaProjects//NetworkModel//output.txt");
+
+        //StringWriter writer = new StringWriter();
+
+        //JsonFactory factory = new JsonFactory();
+
+        //JsonGenerator generator = factory.createGenerator(w);
+        //jsonGen.setCodec (новый ObjectMapper ());
+       // generator.setCodec(null).writeObject(cat);
+        //generator.writeObject(cat);
+
+        //http://fasterxml.github.io/jackson-core/javadoc/2.12/
+        //http://fasterxml.github.io/jackson-core/javadoc/2.12/
+        //ObjectMapper mapper = new ObjectMapper();
+
+       // mapper.writeValue(writer, cat);
+
+
+       // String result = writer.toString();
+        //System.out.println(result);
 
     }
+}
+
+//@JsonAutoDetect
+class Cat
+{
+    public String name;
+    public int age;
+    public int weight;
+    Cat(){}
 }
 
