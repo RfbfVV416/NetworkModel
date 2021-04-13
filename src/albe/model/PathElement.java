@@ -14,4 +14,5 @@ public interface PathElement{
     public void removeConnection(Cable cable);
     public UUID getID();
     public static UUID generateID(){ return UUID.randomUUID(); }
+
 }

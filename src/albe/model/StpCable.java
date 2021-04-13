@@ -28,8 +28,7 @@ public class StpCable implements Cable{
 
     public void addConnection(PathElement pathElement){
         if (pathElement == null) throw new IllegalArgumentException();
-        else if (connections.size() == 2) throw new IndexOutOfBoundsException();
-        else {
+        else if (connections.size() != 2){
             if (!connections.contains(pathElement)){
                 connections.add(pathElement);
                 //if (!pathElement.getConnections().contains(this))

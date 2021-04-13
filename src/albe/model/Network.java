@@ -6,24 +6,21 @@ import java.net.InetAddress;
 public class Network implements RouteProvider{
     private Map<UUID, PathElement> pathElementMap;
     private Map<InetAddress, UUID> ipAddressUUIDMap;
-    private List<Cable> cabelsList;
-    public Network(){
+    private Set<Cable> cabelsSet;
+
+    private String weight;
+    public Network(String weight){
         pathElementMap = new HashMap<UUID,PathElement>();
         ipAddressUUIDMap = new HashMap<InetAddress, UUID>();
-        cabelsList = new ArrayList<Cable>();
-    }
-    //получить все элементы данной сети с их id (<id экземпляра класса, этот экземпляр>)
-    public Map<UUID, PathElement> getPathElements(){
-        return pathElementMap;
+        cabelsSet = new HashSet<>();
+        this.weight = weight;
     }
 
-    public Map<InetAddress, UUID> getIpAddressUUIDMap(){
-        return ipAddressUUIDMap;
-    }
-
-    public List<Cable> getCabelsList(){
-        return cabelsList;
-    }
+    public Map<UUID, PathElement> getPathElements(){ return pathElementMap; }
+    public Map<InetAddress, UUID> getIpAddressUUIDMap(){ return ipAddressUUIDMap; }
+    public Set<Cable> getCabelsSet(){ return cabelsSet; }
+    public String getWeight() { return weight; }
+    public void setWeight(String weight) { this.weight = weight; }
 
     public void add(UUID id, PathElement pathElement){
         if (pathElement == null || id == null) throw new IllegalArgumentException();
@@ -34,6 +31,15 @@ public class Network implements RouteProvider{
                 ipAddressUUIDMap.put(((ActiveElement) pathElement).ipAddress, id);
         }
     }
+    //нельзя добавить два одинаковых ребра в список кабелей
+    //не должно быть в итоговом списке связности ребер соединяющих что-то и пустоту
+    //и то и друго проще ловить в RouteProvider
+
+    public void add(Cable cable){
+        if (cable == null) throw new IllegalArgumentException();
+        else cabelsSet.add(cable);
+    }
+
 
     public void remove(UUID id){
 //        if (!pathElementMap.containsKey(id)) throw new IllegalArgumentException();
@@ -52,4 +58,6 @@ public class Network implements RouteProvider{
 //            pathElementMap.remove(id);
 //        }
     }
+
+
 }
