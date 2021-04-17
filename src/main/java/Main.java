@@ -1,4 +1,4 @@
-//import NetworkModel.CatService;
+
 import NetworkModel.*;
 
 import java.net.InetAddress;
@@ -12,8 +12,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws UnknownHostException {
-          //CatService catService = new CatService();
-          //catService.proses("BMV");
 
         UUID id1 = PathElement.generateID();
         Switch switch1 = new Switch(0.0, 0.6, id1, InetAddress.getLocalHost());
