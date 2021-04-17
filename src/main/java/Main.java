@@ -1,4 +1,4 @@
-
+//import NetworkModel.CatService;
 import NetworkModel.*;
 
 import java.net.InetAddress;
@@ -12,7 +12,8 @@ public class Main {
     }
 
     public static void main(String[] args) throws UnknownHostException {
-      
+          //CatService catService = new CatService();
+          //catService.proses("BMV");
 
         UUID id1 = PathElement.generateID();
         Switch switch1 = new Switch(0.0, 0.6, id1, InetAddress.getLocalHost());
@@ -27,14 +28,19 @@ public class Main {
         Cable stpCable = new StpCable(0.2, 0.9, firewall1, router1);
         Cable utpCable = new UtpCable(0.4, 0.6, switch1, router1);
 
-        Network net = new Network("timeDelay");
+        Network net = new Network();
         net.add(switch1.getID(), switch1);
         net.add(router1.getID(), router1);
         net.add(firewall1.getID(), firewall1);
         net.add(coaxideCable);
         net.add(stpCable);
         net.add(utpCable);
-        RouteProvider.getRoute(switch1.getID(), router1.getID(), net);
+
+        RouteProviderCosts providerCosts = new RouteProviderCosts();
+        RouteProviderTimeDelay providerTimeDelay = new RouteProviderTimeDelay();
+        WeightFunction<PathElement, Cable, PathElement, Double> weightFunction = providerTimeDelay.getWeightFunction();
+
+        RouteProvider.getRoute(switch1.getID(), router1.getID(), net, weightFunction);
 
 
 

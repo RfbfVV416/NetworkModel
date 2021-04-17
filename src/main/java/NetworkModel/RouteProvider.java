@@ -5,9 +5,9 @@ import org.slf4j.*;
 import org.slf4j.LoggerFactory;
 
 public interface RouteProvider{
-    final Logger logger = LoggerFactory.getLogger(RouteProvider.class);
+     Logger logger = LoggerFactory.getLogger(RouteProvider.class);
 
-    public static boolean findEdge(Map<UUID, List<Pair<UUID, Double>>> adjList, Pair<UUID, Double> pair){
+     static boolean findEdge(Map<UUID, List<Pair<UUID, Double>>> adjList, Pair<UUID, Double> pair){
         boolean fl = false;
         for (List<Pair<UUID, Double>> list: adjList.values()) {
             if(list.contains(pair)) fl = true;
@@ -15,11 +15,15 @@ public interface RouteProvider{
         return fl;
     }
 
+    WeightFunction<PathElement, Cable, PathElement, Double> getWeightFunction();
+
 
     /** найти маршрут между элементами сети
      * по их id
      * */
-    public static void getRoute(UUID firstID, UUID secondID, Network net){
+    static void getRoute(UUID firstID, UUID secondID, Network net,
+                         WeightFunction<PathElement, Cable, PathElement, Double> weightFunction){
+        Objects.requireNonNull(net, "Null net obj");
 
         Map<UUID, List<Pair<UUID, Double>>> adjList = new HashMap<>();
         /**каждое ребро соединяет ровно 2 элемента*/
@@ -33,54 +37,32 @@ public interface RouteProvider{
             PathElement first = cable.getConnections().get(0);
             PathElement second = cable.getConnections().get(1);
 
-            Double weight;
-            if (net.getWeight().equals("costs")){
-                weight = first.getCosts() + cable.getCosts() + second.getCosts();
-            }
-            else if (net.getWeight().equals("timeDelay")){
-                weight = first.getTimeDelay() + cable.getTimeDelay() + second.getTimeDelay();
-            }
-            else{ throw new IllegalArgumentException(); }
-
+            Double weight = weightFunction.apply(first, cable, second);
 
             Pair<UUID, Double> pairSecondWeight = new Pair<UUID, Double>(second.getID(), weight);
             if (!findEdge(adjList, pairSecondWeight)) {
                 adjList.get(first.getID()).add(pairSecondWeight);
             }
 
-
-            logger.debug("To vertex " + first.toString() + "added edge " + second.toString() + " " + weight);
-//            System.out.print(first);
-//            System.out.print(" ");
-//            System.out.print(second);
-//            System.out.print(" ");
-//            System.out.println(pairSecondWeight.getSecond());
+            logger.debug("To vertex {} added edge {} {}",  first.toString() , second.toString() , weight);
 
             Pair<UUID, Double> pairFirstWeight = new Pair<UUID, Double>(first.getID(), weight);
             if (!findEdge(adjList, pairFirstWeight)) {
                 adjList.get(second.getID()).add(pairFirstWeight);
             }
 
-            logger.debug("To vertex " + second.toString() + "added edge " + first.toString() + " " + weight);
-//            System.out.print(second);
-//            System.out.print(" ");
-//            System.out.print(first);
-//            System.out.print(" ");
-//            System.out.println(pairFirstWeight.getSecond());
+            logger.debug("To vertex {} added edge {} {}",  second.toString() , first.toString() , weight);
 
         }
 
-        System.out.print("adjList\n\n");
-        for (List<Pair<UUID, Double>> list: adjList.values()) {
-            System.out.print("el:\n");
-            for (int i = 0; i < list.size(); i++){
-                System.out.print("     ");
-                System.out.print(net.getPathElements().get(list.get(i).getFirst()));
-                System.out.print(" ");
-                System.out.print(list.get(i).getSecond());
-                System.out.print("\n");
+        logger.debug("adj List: ");
+        for (Map.Entry<UUID, List<Pair<UUID, Double>>> el: adjList.entrySet()) {
+            logger.debug("el {} : ", net.getPathElements().get(el.getKey()));
+            for (Pair<UUID, Double> pair: el.getValue()) {
+                logger.debug("         {} {} ", net.getPathElements().get(pair.getFirst()), pair.getSecond());
             }
         }
+
 
         //записываем вершины в массив так, чтобы стартовая была на 0-ом месте
         UUID vertMas[] = new UUID[adjList.size()];
@@ -119,7 +101,7 @@ public interface RouteProvider{
             if (!stop) {break;}
         }
 
-        System.out.print(distance.get(secondID));
+        //System.out.print(distance.get(secondID));
 
 
 
@@ -128,7 +110,7 @@ public interface RouteProvider{
         //return List<PathElement> or throws RouteNotFoundException
     }
     //по их IpAddress
-//    public static List<PathElement> getRoute(InetAddress firstID, InetAddress secondID, Network net){
+//    static List<PathElement> getRoute(InetAddress firstID, InetAddress secondID, Network net){
 //        return List<PathElement> or throws RouteNotFoundException
 //    }
 
