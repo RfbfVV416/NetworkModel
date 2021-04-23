@@ -15,7 +15,7 @@ public interface RouteProvider{
         return fl;
     }
 
-    WeightFunction<PathElement, Cable, PathElement, Double> getWeightFunction();
+    WeightFunction<PathElement, Cable, Double> getWeightFunction();
 
      static void distanceToString(PathElement el, Map<UUID, Double> distance){
              logger.debug("Current vertex {}: {} ", el, distance.values());
@@ -31,16 +31,17 @@ public interface RouteProvider{
     /** найти маршрут между элементами сети
      * по их id
      * */
-    static List<PathElement> getRoute(UUID firstID, UUID secondID, Network net,
-                               WeightFunction<PathElement, Cable, PathElement, Double> weightFunction)
+    default List<PathElement> getRoute(UUID firstID, UUID secondID, Network net)
             throws RouteNotFoundException{
 
         Objects.requireNonNull(net, "Null net obj");
 
+        WeightFunction<PathElement, Cable, Double> weightFunction = getWeightFunction();
+
         logger.debug("Start of generating the adjacency list");
 
         Map<UUID, List<Pair<UUID, Double>>> adjList = new HashMap<>();
-        /**каждое ребро соеиняет ровно 2 элемента*/
+
         net.getCabelsSet().removeIf(cable -> cable.getConnections().size() != 2);
         //заполнение ключей
         for (UUID elemId: net.getPathElements().keySet()) {
@@ -51,7 +52,7 @@ public interface RouteProvider{
             PathElement first = cable.getConnections().get(0);
             PathElement second = cable.getConnections().get(1);
 
-            Double weight = weightFunction.apply(first, cable, second);
+            Double weight = weightFunction.apply(first, cable);
 
             Pair<UUID, Double> pairSecondWeight = new Pair<UUID, Double>(second.getID(), weight);
             if (!findEdge(adjList, pairSecondWeight)) {
@@ -59,6 +60,8 @@ public interface RouteProvider{
             }
 
             logger.debug("To vertex {} added edge {} {}",  first.toString() , second.toString() , weight);
+
+            weight = weightFunction.apply(second, cable);
 
             Pair<UUID, Double> pairFirstWeight = new Pair<UUID, Double>(first.getID(), weight);
             if (!findEdge(adjList, pairFirstWeight)) {
@@ -82,7 +85,7 @@ public interface RouteProvider{
         Map<UUID, PathElement> netPathElements = net.getPathElements();
 
         //записываем вершины в массив так, чтобы стартовая была на 0-ом месте
-        UUID vertMas[] = new UUID[adjList.size()];
+        UUID [] vertMas = new UUID[adjList.size()];
         vertMas[0] = firstID;
         int k  = 1;
         for (UUID key: adjList.keySet()) {
@@ -116,19 +119,22 @@ public interface RouteProvider{
                     Double nextVertDist = distance.get(pair.getFirst());
                     PathElement nextVert = netPathElements.get(pair.getFirst());
                     if (vertDist + pair.getSecond() < nextVertDist && vertDist != Double.MAX_VALUE){
-                        //Double vD = vertDist;
-                        //Double d =  pair.getSecond();
                         distance.put(pair.getFirst(), vertDist + (Double)pair.getSecond());
                         parentPathElement.put(nextVert.getID(), el.getID());
                         stop = false;
                         distanceToString(el, distance);
-                        //parentPathElementsToString(parentPathElement, net);
                     }
                 }
             }
             n--;
             if (!stop) {break;}
         }
+
+//        for (Map.Entry<UUID, Double> el: distance.entrySet()) {
+//            Double elemTimeDelay = netPathElements.get(el.getKey()).getTimeDelay();
+//            distance.put(el.getKey(), el.getValue() + elemTimeDelay);
+//        }
+//        logger.debug("Final distance: {}", distance.values());
 
         List<PathElement> pathList = new ArrayList<>();
         if (distance.get(secondID) == Double.MAX_VALUE)

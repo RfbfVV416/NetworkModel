@@ -8,9 +8,6 @@ import java.util.UUID;
 
 
 public class Main {
-    public Double func(Double pathElement1, Double cable, Double pathElement2){
-        return 0.1;
-    }
 
     public static void main(String[] args) throws RouteNotFoundException, UnknownHostException{
 
@@ -62,11 +59,10 @@ public class Main {
 
 
 
-        RouteProviderCosts providerCosts = new RouteProviderCosts();
-        RouteProviderTimeDelay providerTimeDelay = new RouteProviderTimeDelay();
-        WeightFunction<PathElement, Cable, PathElement, Double> weightFunction = providerTimeDelay.getWeightFunction();
+        RouteProvider providerCosts = new RouteProviderCosts();
+        RouteProvider providerTimeDelay = new RouteProviderTimeDelay();
 
-        List<PathElement> resPath = RouteProvider.getRoute(switch1.getID(), router1.getID(), net, weightFunction);
+        List<PathElement> resPath = providerTimeDelay.getRoute(switch1.getID(), router1.getID(), net);
 
 
 
