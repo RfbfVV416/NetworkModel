@@ -33,5 +33,6 @@ public class Network{
         if (cable == null) throw new IllegalArgumentException();
         else cabelsSet.add(cable);
     }
+
 }
 

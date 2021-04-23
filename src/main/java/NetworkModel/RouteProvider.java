@@ -17,16 +17,30 @@ public interface RouteProvider{
 
     WeightFunction<PathElement, Cable, PathElement, Double> getWeightFunction();
 
+     static void distanceToString(PathElement el, Map<UUID, Double> distance){
+             logger.debug("Current vertex {}: {} ", el, distance.values());
+     }
+
+//     static void parentPathElementsToString(Map<UUID, UUID> parentPathElements, Network net){
+//         for (Map.Entry<UUID, UUID> el: parentPathElements.entrySet()) {
+//             logger.debug("Parent of {} is {}", net.getPathElements().get(el.getKey()), net.getPathElements().get(el.getValue()));
+//         }
+//     }
+
 
     /** найти маршрут между элементами сети
      * по их id
      * */
-    static void getRoute(UUID firstID, UUID secondID, Network net,
-                         WeightFunction<PathElement, Cable, PathElement, Double> weightFunction){
+    static List<PathElement> getRoute(UUID firstID, UUID secondID, Network net,
+                               WeightFunction<PathElement, Cable, PathElement, Double> weightFunction)
+            throws RouteNotFoundException{
+
         Objects.requireNonNull(net, "Null net obj");
 
+        logger.debug("Start of generating the adjacency list");
+
         Map<UUID, List<Pair<UUID, Double>>> adjList = new HashMap<>();
-        /**каждое ребро соединяет ровно 2 элемента*/
+        /**каждое ребро соеиняет ровно 2 элемента*/
         net.getCabelsSet().removeIf(cable -> cable.getConnections().size() != 2);
         //заполнение ключей
         for (UUID elemId: net.getPathElements().keySet()) {
@@ -55,7 +69,7 @@ public interface RouteProvider{
 
         }
 
-        logger.debug("adj List: ");
+        logger.debug("Generated adjacency list: ");
         for (Map.Entry<UUID, List<Pair<UUID, Double>>> el: adjList.entrySet()) {
             logger.debug("el {} : ", net.getPathElements().get(el.getKey()));
             for (Pair<UUID, Double> pair: el.getValue()) {
@@ -63,6 +77,9 @@ public interface RouteProvider{
             }
         }
 
+        logger.debug("Algorithm started ");
+
+        Map<UUID, PathElement> netPathElements = net.getPathElements();
 
         //записываем вершины в массив так, чтобы стартовая была на 0-ом месте
         UUID vertMas[] = new UUID[adjList.size()];
@@ -81,19 +98,31 @@ public interface RouteProvider{
         for (UUID key: adjList.keySet()) {
             if (key != firstID) distance.put(key, Double.MAX_VALUE);
         }
+        logger.debug("Start distance: {}", distance.values());
 
+        Map<UUID, UUID> parentPathElement = new HashMap<>();
+        for (UUID id: adjList.keySet()) {
+            parentPathElement.put(id, null);
+        }
 
         int n = adjList.size() - 1; //максимально возможное кол-во итераций
         while(n != 0){
             boolean stop = true;
             for(int i = 0; i < adjList.size(); i++){
                 UUID vert = vertMas[i]; //текущая вершина
+                PathElement el = netPathElements.get(vert);
                 for (Pair<UUID, Double> pair: adjList.get(vert)) {
                     Double vertDist = distance.get(vert); //расстояние от стартовой вершины до текущей
                     Double nextVertDist = distance.get(pair.getFirst());
-                    if (vertDist + pair.getSecond() > nextVertDist){ //&& vertDist != Double.MAX_VALUE
+                    PathElement nextVert = netPathElements.get(pair.getFirst());
+                    if (vertDist + pair.getSecond() < nextVertDist && vertDist != Double.MAX_VALUE){
+                        //Double vD = vertDist;
+                        //Double d =  pair.getSecond();
                         distance.put(pair.getFirst(), vertDist + (Double)pair.getSecond());
+                        parentPathElement.put(nextVert.getID(), el.getID());
                         stop = false;
+                        distanceToString(el, distance);
+                        //parentPathElementsToString(parentPathElement, net);
                     }
                 }
             }
@@ -101,7 +130,32 @@ public interface RouteProvider{
             if (!stop) {break;}
         }
 
-        //System.out.print(distance.get(secondID));
+        List<PathElement> pathList = new ArrayList<>();
+        if (distance.get(secondID) == Double.MAX_VALUE)
+            throw new RouteNotFoundException("There is no path between given vertices");
+        else{
+
+            UUID pathElementUUID = secondID;
+            while(parentPathElement.get(pathElementUUID) != null){
+                pathList.add(netPathElements.get(pathElementUUID));
+                pathElementUUID = parentPathElement.get(pathElementUUID);
+            }
+            pathList.add(netPathElements.get(firstID));
+        }
+
+        List<PathElement> reversPathList = new ArrayList<>();
+        for(int i = pathList.size() - 1; i >= 0; i--){
+            reversPathList.add(pathList.get(i));
+        }
+
+
+
+        logger.debug("Algorithm ended");
+        logger.debug("Total weight of path between given elements is {} ", distance.get(secondID));
+        logger.debug("Result path: {}", reversPathList);
+        return reversPathList;
+
+
 
 
 
