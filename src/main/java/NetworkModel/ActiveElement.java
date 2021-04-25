@@ -1,7 +1,5 @@
 package NetworkModel;
 
-import java.lang.instrument.IllegalClassFormatException;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -12,13 +10,13 @@ public class ActiveElement implements PathElement{
     protected Double costs;
     protected UUID id;
     protected List<Cable> connections;
-    protected InetAddress ipAddress;
+    protected String ipAddress;
 
-    public ActiveElement(Double timeDelay, Double costs, UUID id, InetAddress ipAddress){
+    public ActiveElement(Double timeDelay, Double costs, UUID id, String ipAddress){
         this.timeDelay = timeDelay;
         this.costs = costs;
         this.id = id;
-        connections = new ArrayList<Cable>();
+        connections = new ArrayList<>();
         this.ipAddress = ipAddress;
     }
 
@@ -35,7 +33,7 @@ public class ActiveElement implements PathElement{
     public List<Cable> getConnections(){
         return connections;
     }
-    public InetAddress getIP(){
+    public String getIP(){
         return ipAddress;
     }
 
@@ -47,4 +45,5 @@ public class ActiveElement implements PathElement{
         });
         connections.add(cable);
     }
+
 }

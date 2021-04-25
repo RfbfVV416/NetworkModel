@@ -1,10 +1,9 @@
 package NetworkModel;
 
-import java.net.InetAddress;
 import java.util.UUID;
 
 public class Switch extends ActiveElement{
-    public Switch(Double timeDelay, Double costs, UUID id, InetAddress ipAddress){
+    public Switch(Double timeDelay, Double costs, UUID id, String ipAddress){
         super(timeDelay, costs, id, ipAddress);
     }
 

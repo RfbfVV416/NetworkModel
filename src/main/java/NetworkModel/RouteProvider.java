@@ -42,13 +42,13 @@ public interface RouteProvider{
 
         Map<UUID, List<Pair<UUID, Double>>> adjList = new HashMap<>();
 
-        net.getCabelsSet().removeIf(cable -> cable.getConnections().size() != 2);
+        net.getCablesSet().removeIf(cable -> cable.getConnections().size() != 2);
         //заполнение ключей
         for (UUID elemId: net.getPathElements().keySet()) {
             adjList.put(elemId, new ArrayList<Pair<UUID, Double>>());
         }
         //заполнение списков смежных вершин, соответствующих ключам
-        for (Cable cable: net.getCabelsSet()) {
+        for (Cable cable: net.getCablesSet()) {
             PathElement first = cable.getConnections().get(0);
             PathElement second = cable.getConnections().get(1);
 

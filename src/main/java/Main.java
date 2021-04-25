@@ -1,26 +1,29 @@
 
 import NetworkModel.*;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.net.InetAddress;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.UUID;
 
-
 public class Main {
 
-    public static void main(String[] args) throws RouteNotFoundException, UnknownHostException{
+    public static void main(String[] args) throws RouteNotFoundException, UnknownHostException, IOException {
 
         UUID id1 = PathElement.generateID();
-        Switch switch1 = new Switch(1.0, 2.0, id1, InetAddress.getLocalHost());
+        Switch switch1 = new Switch(1.0, 2.0, id1, PathElement.generateIP());
 
         UUID id2 = PathElement.generateID();
-        Firewall firewall1 = new Firewall(3.0, 4.0, id2, InetAddress.getLocalHost());
+        Firewall firewall1 = new Firewall(3.0, 4.0, id2, PathElement.generateIP());
 
         Cable coaxideCable1 = new CoaxialCable(6.0, 4.0, switch1, firewall1);
 
         UUID id3 = PathElement.generateID();
-        Router router1 = new Router(5.0, 6.0, id3, InetAddress.getLocalHost());
+        Router router1 = new Router(5.0, 6.0, id3, PathElement.generateIP());
 
         StpCable stpCable1 = new StpCable(1.0, 2.0, firewall1, router1);
 
@@ -31,7 +34,7 @@ public class Main {
         CoaxialCable coaxialCable2 = new CoaxialCable(1.1, 2.2, firewall1, hub1);
 
         UUID id5 = PathElement.generateID();
-        PC pc1 = new PC(1.3, 1.7, id5, InetAddress.getLocalHost());
+        PC pc1 = new PC(1.3, 1.7, id5, PathElement.generateIP());
 
         StpCable stpCable2 = new StpCable(5.0, 8.0, hub1, pc1);
 
@@ -63,6 +66,9 @@ public class Main {
         RouteProvider providerTimeDelay = new RouteProviderTimeDelay();
 
         List<PathElement> resPath = providerTimeDelay.getRoute(switch1.getID(), router1.getID(), net);
+
+
+
 
 
 
