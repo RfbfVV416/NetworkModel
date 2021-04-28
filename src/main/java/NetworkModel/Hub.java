@@ -7,4 +7,10 @@ public class Hub extends PassiveElement{
         super(timeDelay, costs, id);
     }
 
+    @Override
+    public String toString() {
+        return "Hub{" +
+                "id=" + id +
+                '}';
+    }
 }

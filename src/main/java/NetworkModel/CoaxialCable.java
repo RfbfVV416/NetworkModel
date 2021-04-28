@@ -1,5 +1,7 @@
 package NetworkModel;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +31,16 @@ public class CoaxialCable implements Cable{
         return costs;
     }
     public String getInfo(){ return "Сoaxial cable"; }
+
+
+
+    @Override
+    public String toString() {
+        return "CoaxialCable{\n" +
+                "timeDelay=" + timeDelay + "\n" +
+                ", costs=" + costs + "\n" +
+                ", connections=" + connections + "\n" +
+                "}\n";
+    }
 }
 

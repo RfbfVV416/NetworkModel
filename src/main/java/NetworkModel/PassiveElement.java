@@ -1,5 +1,7 @@
 package NetworkModel;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,4 +41,15 @@ public class PassiveElement implements PathElement{
         connections.add(cable);
     }
 
+    @JsonValue
+    public  String toJsonValue(){
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "PassiveElement{" +
+                "id=" + id +
+                '}';
+    }
 }

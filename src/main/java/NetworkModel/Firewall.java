@@ -7,4 +7,10 @@ public class Firewall extends ActiveElement{
         super(timeDelay, costs, id, ipAddress);
     }
 
+    @Override
+    public String toString() {
+        return "Firewall{" +
+                "ipAddress='" + ipAddress + '\'' +
+                '}';
+    }
 }

@@ -1,14 +1,19 @@
 
 import NetworkModel.*;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.UUID;
+
+import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 
 public class Main {
 
@@ -61,13 +66,21 @@ public class Main {
         net.add(coaxialCable3);
 
 
-
         RouteProvider providerCosts = new RouteProviderCosts();
         RouteProvider providerTimeDelay = new RouteProviderTimeDelay();
 
         List<PathElement> resPath = providerTimeDelay.getRoute(switch1.getID(), router1.getID(), net);
 
+        FileOutputStream w = new FileOutputStream("C://Users//bebes//IdeaProjects//NetworkModelNew//output.txt");
 
+        JsonFactory factory = new JsonFactory();
+
+        JsonGenerator generator = factory.createGenerator(w);
+        ObjectMapper mapper = new ObjectMapper();
+
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        generator.setCodec (mapper);
+        generator.writeObject(net);
 
 
 

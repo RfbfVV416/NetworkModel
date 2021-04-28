@@ -8,4 +8,10 @@ public class PC extends ActiveElement{
         super(timeDelay, costs, id, ipAddress);
     }
 
+    @Override
+    public String toString() {
+        return "PC{" +
+                "ipAddress='" + ipAddress + '\'' +
+                '}';
+    }
 }

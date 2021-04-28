@@ -1,0 +1,52 @@
+{
+  "ipAddressUUIDMap" : {
+    "207.51.185.159" : "05eac781-dba5-4d92-8afc-21aeafc5835e",
+    "141.237.78.21" : "d9225da4-f4be-4e54-9bd4-388cdc6d9048",
+    "174.182.191.2" : "57f91d2e-4cd1-4417-94d9-3ea2b286f233",
+    "181.14.77.122" : "ac6abfd2-b31f-4026-8749-7a162b208863"
+  },
+  "cablesSet" : [ {
+    "timeDelay" : 7.0,
+    "costs" : 8.0,
+    "connections" : [ "Router{ipAddress='174.182.191.2'}", "Hub{id=8e2817af-9a73-4725-a523-f1bbeea95965}" ],
+    "info" : "UTP cable"
+  }, {
+    "timeDelay" : 5.0,
+    "costs" : 8.0,
+    "connections" : [ "Hub{id=8e2817af-9a73-4725-a523-f1bbeea95965}", "PC{ipAddress='207.51.185.159'}" ],
+    "info" : "STP cable"
+  }, {
+    "timeDelay" : 2.0,
+    "costs" : 2.1,
+    "connections" : [ "PC{ipAddress='207.51.185.159'}", "Hub{id=7cfd359f-2e83-4afc-bc68-3b8dd2ce6938}" ],
+    "info" : "UTP cable"
+  }, {
+    "timeDelay" : 6.0,
+    "costs" : 4.0,
+    "connections" : [ "Switch{ipAddress='141.237.78.21'}", "Firewall{ipAddress='181.14.77.122'}" ],
+    "info" : "Сoaxial cable"
+  }, {
+    "timeDelay" : 5.0,
+    "costs" : 8.0,
+    "connections" : [ "Hub{id=7cfd359f-2e83-4afc-bc68-3b8dd2ce6938}", "Switch{ipAddress='141.237.78.21'}" ],
+    "info" : "Сoaxial cable"
+  }, {
+    "timeDelay" : 1.1,
+    "costs" : 2.2,
+    "connections" : [ "Firewall{ipAddress='181.14.77.122'}", "Hub{id=8e2817af-9a73-4725-a523-f1bbeea95965}" ],
+    "info" : "Сoaxial cable"
+  }, {
+    "timeDelay" : 1.0,
+    "costs" : 2.0,
+    "connections" : [ "Firewall{ipAddress='181.14.77.122'}", "Router{ipAddress='174.182.191.2'}" ],
+    "info" : "STP cable"
+  } ],
+  "pathElements" : {
+    "d9225da4-f4be-4e54-9bd4-388cdc6d9048" : "Switch{ipAddress='141.237.78.21'}",
+    "8e2817af-9a73-4725-a523-f1bbeea95965" : "Hub{id=8e2817af-9a73-4725-a523-f1bbeea95965}",
+    "05eac781-dba5-4d92-8afc-21aeafc5835e" : "PC{ipAddress='207.51.185.159'}",
+    "ac6abfd2-b31f-4026-8749-7a162b208863" : "Firewall{ipAddress='181.14.77.122'}",
+    "7cfd359f-2e83-4afc-bc68-3b8dd2ce6938" : "Hub{id=7cfd359f-2e83-4afc-bc68-3b8dd2ce6938}",
+    "57f91d2e-4cd1-4417-94d9-3ea2b286f233" : "Router{ipAddress='174.182.191.2'}"
+  }
+}

@@ -1,5 +1,7 @@
 package NetworkModel;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class StpCable implements Cable{
         pathEl2.addConnection(this);
     }
 
+
+
     public List<PathElement> getConnections(){
         return connections;
     }
@@ -31,4 +35,13 @@ public class StpCable implements Cable{
         return "STP cable";
     }
 
+
+    @Override
+    public String toString() {
+        return "StpCable{" +
+                "timeDelay=" + timeDelay +
+                ", costs=" + costs +
+                ", connections=" + connections +
+                '}';
+    }
 }

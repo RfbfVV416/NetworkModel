@@ -2,15 +2,16 @@ package NetworkModel;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+import java.net.InetAddress;
 import java.util.*;
-import java.util.UUID;
+
 @JsonAutoDetect
-public class Network{
+public class NetworkTest {
     private Map<UUID, PathElement> pathElementMap;
     private Map<String, UUID> ipAddressUUIDMap;
     private Set<Cable> cablesSet;
 
-    public Network(){
+    public NetworkTest(){
         pathElementMap = new HashMap<UUID,PathElement>();
         ipAddressUUIDMap = new HashMap<String, UUID>();
         cablesSet = new HashSet<>();
@@ -36,4 +37,3 @@ public class Network{
     }
 
 }
-

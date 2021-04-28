@@ -1,5 +1,7 @@
 package NetworkModel;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,4 +33,13 @@ public class UtpCable implements Cable{
         return "UTP cable";
     }
 
+
+    @Override
+    public String toString() {
+        return "UtpCable{" +
+                "timeDelay=" + timeDelay +
+                ", costs=" + costs +
+                ", connections=" + connections +
+                '}';
+    }
 }
