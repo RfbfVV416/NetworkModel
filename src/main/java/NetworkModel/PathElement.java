@@ -1,5 +1,6 @@
 package NetworkModel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.common.net.InetAddresses;
@@ -13,16 +14,17 @@ import java.util.UUID;
 })
 public interface PathElement{
 
-    public Double getTimeDelay();
-    public Double getCosts();
-    public List<Cable> getConnections();
-    public String getInfo();
+    Double getTimeDelay();
+    Double getCosts();
+    List<Cable> getConnections();
+    @JsonIgnore
+    String getInfo();
 
 
-    public void addConnection(Cable cable);
-    public UUID getID();
-    public static UUID generateID(){ return UUID.randomUUID(); }
-    public static String generateIP(){
+    void addConnection(Cable cable);
+    UUID getID();
+    static UUID generateID(){ return UUID.randomUUID(); }
+    static String generateIP(){
         Random random = new Random();
         return InetAddresses.fromInteger(random.nextInt()).getHostAddress();
     }

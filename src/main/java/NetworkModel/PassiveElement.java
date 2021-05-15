@@ -1,8 +1,6 @@
 package NetworkModel;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +31,7 @@ public class PassiveElement implements PathElement{
     public Double getCosts(){
         return costs;
     }
-    public String getInfo(){
-        return "This is a passive element";
-    }
+    public String getInfo(){ return "This is a passive element"; }
     public UUID getID(){ return id; }
     public List<Cable> getConnections(){
         return connections;
@@ -47,11 +43,6 @@ public class PassiveElement implements PathElement{
             return cable1.getConnections().equals(cable.getConnections());
         });
         connections.add(cable);
-    }
-
-    @JsonValue
-    public  String toJsonValue(){
-        return toString();
     }
 
     @Override

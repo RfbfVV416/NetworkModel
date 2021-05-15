@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.UUID;
 @JsonTypeName("pc")
 public class PC extends ActiveElement{
-    public PC(Double timeDelay, Double costs, UUID id, String ipAddress){
+    public PC(){}
 
+    public PC(Double timeDelay, Double costs, UUID id, String ipAddress){
         super(timeDelay, costs, id, ipAddress);
     }
 

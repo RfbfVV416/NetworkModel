@@ -12,14 +12,6 @@ import java.util.UUID;
 @JsonSubTypes({
         @JsonSubTypes.Type(value=PathElement.class, name="PathElement"),
         @JsonSubTypes.Type(value=Cable.class, name="Cable")
-//        @JsonSubTypes.Type(value=Router.class, name="router"),
-//        @JsonSubTypes.Type(value=Firewall.class, name="firewall"),
-//        @JsonSubTypes.Type(value=Hub.class, name="hub"),
-//        @JsonSubTypes.Type(value=PC.class, name="pc"),
-//        @JsonSubTypes.Type(value=Switch.class, name="switch"),
-//        @JsonSubTypes.Type(value=CoaxialCable.class, name="coaxialCable"),
-//        @JsonSubTypes.Type(value=StpCable.class, name="STPCable"),
-//        @JsonSubTypes.Type(value=UtpCable.class, name="UTPCable")
 })
 @JsonAutoDetect
 public class Network{
@@ -52,6 +44,8 @@ public class Network{
         if (cable == null) throw new IllegalArgumentException();
         else cablesSet.add(cable);
     }
+
+
 
 }
 

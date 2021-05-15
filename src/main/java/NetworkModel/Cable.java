@@ -1,9 +1,6 @@
 package NetworkModel;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.List;
 @JsonAutoDetect
@@ -14,14 +11,10 @@ import java.util.List;
         @JsonSubTypes.Type(value=UtpCable.class, name="UTPCable")
 })
 public interface Cable{
-    public Double getTimeDelay();
-    public Double getCosts();
-    public List<PathElement> getConnections();
-    public  String getInfo();
-
-//    @JsonValue
-//    public default String toJsonValue(){
-//        return toString();
-//    }
+    Double getTimeDelay();
+    Double getCosts();
+    List<PathElement> getConnections();
+    @JsonIgnore
+    String getInfo();
 
 }

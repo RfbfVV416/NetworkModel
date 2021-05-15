@@ -77,11 +77,10 @@ public class Main {
         RouteProvider providerCosts = new RouteProviderCosts();
         RouteProvider providerTimeDelay = new RouteProviderTimeDelay();
 
-        List<PathElement> resPath = providerTimeDelay.getRoute(switch1.getID(), router1.getID(), net);
+        //List<PathElement> resPath = providerTimeDelay.getRoute(switch1.getID(), router1.getID(), net);
 
 
         FileOutputStream w = new FileOutputStream("C://Users//bebes//IdeaProjects//NetworkModelNew//output.txt");
-
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -95,10 +94,32 @@ public class Main {
 
         System.out.println(serializedString);
 
-        Network resultSet = mapper.readValue(serializedString, Network.class);
+        Network resultNet = mapper.readValue(serializedString, Network.class);
 
-        System.out.println(resultSet);
-       
+        System.out.println(resultNet);
+
+        //сериализуем результат десериализации
+
+        FileOutputStream writer = new FileOutputStream("C://Users//bebes//IdeaProjects//NetworkModelNew//output2.txt");
+
+        JsonGenerator gen = factory.createGenerator(writer);
+        gen.setCodec (new ObjectMapper ());
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        String serializedStr = mapper.writeValueAsString(resultNet);
+        System.out.println(serializedStr);
+        gen.writeObject(resultNet);
+
+        //List<PathElement> resPath2 = providerTimeDelay.getRoute(switch1.getID(), router1.getID(), resultNet);
+
+
+
+
+
+
+
+
+
+
 
     }
 

@@ -89,7 +89,7 @@ public interface RouteProvider{
         vertMas[0] = firstID;
         int k  = 1;
         for (UUID key: adjList.keySet()) {
-            if (key != firstID) {
+            if (firstID.equals(key)) { //а было !=
                 vertMas[k] = key;
                 k++;
             }

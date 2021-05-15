@@ -1,7 +1,6 @@
 package NetworkModel;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
 public class StpCable implements Cable {
     private Double timeDelay;
     private Double costs;
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
     private List<PathElement> connections;
 
     public StpCable(){}
@@ -34,9 +34,7 @@ public class StpCable implements Cable {
     public Double getCosts(){
         return costs;
     }
-    public String getInfo(){
-        return "STP cable";
-    }
+    public String getInfo(){ return "STP cable"; }
 
 
     @Override
