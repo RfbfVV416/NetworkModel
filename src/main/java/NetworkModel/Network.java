@@ -1,13 +1,31 @@
 package NetworkModel;
 
+import NetworkModel.Example.BasicClass;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.*;
 import java.util.UUID;
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="network")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value=PathElement.class, name="PathElement"),
+        @JsonSubTypes.Type(value=Cable.class, name="Cable")
+//        @JsonSubTypes.Type(value=Router.class, name="router"),
+//        @JsonSubTypes.Type(value=Firewall.class, name="firewall"),
+//        @JsonSubTypes.Type(value=Hub.class, name="hub"),
+//        @JsonSubTypes.Type(value=PC.class, name="pc"),
+//        @JsonSubTypes.Type(value=Switch.class, name="switch"),
+//        @JsonSubTypes.Type(value=CoaxialCable.class, name="coaxialCable"),
+//        @JsonSubTypes.Type(value=StpCable.class, name="STPCable"),
+//        @JsonSubTypes.Type(value=UtpCable.class, name="UTPCable")
+})
 @JsonAutoDetect
 public class Network{
     private Map<UUID, PathElement> pathElementMap;
     private Map<String, UUID> ipAddressUUIDMap;
+    @JsonDeserialize(as= HashSet.class,contentAs= Cable.class)
     private Set<Cable> cablesSet;
 
     public Network(){

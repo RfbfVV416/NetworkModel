@@ -1,18 +1,28 @@
 package NetworkModel;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="type")
+@JsonSubTypes({
+          @JsonSubTypes.Type(value=Router.class, name="router"),
+        @JsonSubTypes.Type(value=Firewall.class, name="firewall"),
+        @JsonSubTypes.Type(value=PC.class, name="pc"),
+        @JsonSubTypes.Type(value=Switch.class, name="switch")
+})
 public class ActiveElement implements PathElement{
     protected Double timeDelay;
     protected Double costs;
     protected UUID id;
     protected List<Cable> connections;
     protected String ipAddress;
+
+    public ActiveElement(){}
 
     public ActiveElement(Double timeDelay, Double costs, UUID id, String ipAddress){
         this.timeDelay = timeDelay;
@@ -51,5 +61,12 @@ public class ActiveElement implements PathElement{
     @JsonValue
     public  String toJsonValue(){
         return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "ActiveElement{" +
+                "ipAddress='" + ipAddress + '\'' +
+                '}';
     }
 }

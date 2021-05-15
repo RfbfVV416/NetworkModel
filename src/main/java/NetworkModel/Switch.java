@@ -1,7 +1,9 @@
 package NetworkModel;
 
-import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+import java.util.UUID;
+@JsonTypeName("switch")
 public class Switch extends ActiveElement{
     public Switch(Double timeDelay, Double costs, UUID id, String ipAddress){
 
@@ -14,4 +16,5 @@ public class Switch extends ActiveElement{
                 "ipAddress='" + ipAddress + '\'' +
                 '}';
     }
+
 }

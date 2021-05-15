@@ -1,14 +1,17 @@
 package NetworkModel;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class UtpCable implements Cable{
+@JsonTypeName("utpCable")
+public class UtpCable implements Cable {
     private Double timeDelay;
     private Double costs;
     private List<PathElement> connections;
+
+    public UtpCable(){}
 
     public UtpCable(Double timeDelay, Double costs, PathElement pathEl1, PathElement pathEl2){
         this.timeDelay = timeDelay;

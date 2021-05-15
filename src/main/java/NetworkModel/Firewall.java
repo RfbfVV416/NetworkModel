@@ -1,8 +1,13 @@
 package NetworkModel;
 
-import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+import java.util.UUID;
+@JsonTypeName("firewall")
 public class Firewall extends ActiveElement{
+
+    public Firewall(){}
+
     public Firewall(Double timeDelay, Double costs, UUID id, String ipAddress){
         super(timeDelay, costs, id, ipAddress);
     }

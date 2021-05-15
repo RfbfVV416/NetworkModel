@@ -1,15 +1,23 @@
 
 import NetworkModel.*;
+import NetworkModel.Example.BasicClass;
+import NetworkModel.Example.ClassHolder;
+import NetworkModel.Example.ExtendedClass;
+import NetworkModel.Example.SuperExtendedClass;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -71,25 +79,29 @@ public class Main {
 
         List<PathElement> resPath = providerTimeDelay.getRoute(switch1.getID(), router1.getID(), net);
 
+
         FileOutputStream w = new FileOutputStream("C://Users//bebes//IdeaProjects//NetworkModelNew//output.txt");
 
-        JsonFactory factory = new JsonFactory();
 
-        JsonGenerator generator = factory.createGenerator(w);
         ObjectMapper mapper = new ObjectMapper();
-
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        generator.setCodec (mapper);
+        String serializedString = mapper.writeValueAsString(net);
+
+        JsonFactory factory = new JsonFactory();
+        JsonGenerator generator = factory.createGenerator(w);
+        generator.setCodec (new ObjectMapper ());
+
         generator.writeObject(net);
 
+        System.out.println(serializedString);
 
+        Network resultSet = mapper.readValue(serializedString, Network.class);
 
-
-
-
-
+        System.out.println(resultSet);
+       
 
     }
+
 
 }
 
