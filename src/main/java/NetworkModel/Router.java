@@ -1,5 +1,4 @@
 package NetworkModel;
-
 import java.util.UUID;
 
 public class Router extends  ActiveElement{

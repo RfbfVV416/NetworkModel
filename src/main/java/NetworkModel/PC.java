@@ -1,8 +1,7 @@
 package NetworkModel;
-
 import com.fasterxml.jackson.annotation.JsonTypeName;
-
 import java.util.UUID;
+
 @JsonTypeName("pc")
 public class PC extends ActiveElement{
     public PC(){}

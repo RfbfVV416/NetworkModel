@@ -1,9 +1,9 @@
 package NetworkModel;
-
 import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @JsonTypeName("utpCable")
 public class UtpCable implements Cable {
     private Double timeDelay;
@@ -29,10 +29,8 @@ public class UtpCable implements Cable {
     public Double getTimeDelay(){
         return timeDelay;
     }
-    public Double getCosts(){
-        return costs;
-    }
-    public String getInfo(){     return "UTP cable"; }
+    public Double getCosts(){ return costs; }
+    public String getInfo(){ return "UTP cable"; }
 
 
     @Override

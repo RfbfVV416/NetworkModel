@@ -1,9 +1,8 @@
 package NetworkModel;
-
 import com.fasterxml.jackson.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
 @JsonTypeName("stpCable")
 public class StpCable implements Cable {
     private Double timeDelay;

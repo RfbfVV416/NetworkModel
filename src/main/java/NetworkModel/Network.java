@@ -1,13 +1,11 @@
 package NetworkModel;
-
-import NetworkModel.Example.BasicClass;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.util.*;
 import java.util.UUID;
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="network")
 @JsonSubTypes({
         @JsonSubTypes.Type(value=PathElement.class, name="PathElement"),
@@ -32,7 +30,7 @@ public class Network{
 
     public void add(UUID id, PathElement pathElement){
         if (pathElement == null || id == null) throw new IllegalArgumentException();
-            //ещё нельзя добавлять ActiveElement у которого ipAddress == null
+
         else {
             pathElementMap.put(id, pathElement);
             if (pathElement instanceof ActiveElement)

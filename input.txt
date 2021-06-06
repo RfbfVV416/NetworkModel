@@ -1,0 +1,744 @@
+{
+  "network" : "Network",
+  "ipAddressUUIDMap" : {
+    "115.211.213.31" : "714f656b-5fbe-4603-afbd-42023de3abff",
+    "59.209.132.120" : "7b1f85a6-bc59-4389-b8a8-9bbbc4844052",
+    "49.89.192.41" : "4eca9c64-4120-44bf-b348-6e7789c4a994",
+    "137.211.92.138" : "0ec2b2ae-2353-401f-a56c-2ee24ee9697a",
+    "127.100.244.170" : "dd2ea706-ab6d-43c1-ba27-926ce366a00d",
+    "183.199.200.119" : "b691bf56-2e0d-4901-920e-6633fa2dbe90",
+    "29.84.40.72" : "2071013e-39a5-4f08-9c43-5442b621e6e8",
+    "44.153.80.220" : "0af53bd0-e313-41f3-9fd4-4e0396ba99d6",
+    "251.90.180.18" : "bb57e4ee-b4bf-4ec1-b7f6-a16fa3285016",
+    "37.217.150.102" : "d8ec6297-6688-4b66-b5a1-3bd40aa092f7",
+    "70.102.224.229" : "38a411a3-a578-4e1b-b56d-46e64a3072f5",
+    "103.125.82.238" : "fe0d6bab-6f82-49d6-a01c-92025ddd5340",
+    "10.234.129.186" : "f1d8b453-2755-4305-a6d4-e362d519deca",
+    "162.227.162.111" : "3d950a8b-ab56-43c7-b4d4-e80302adc098",
+    "43.40.91.211" : "83f42394-cf4a-4386-8a0d-7a205d66bfd1"
+  },
+  "cablesSet" : [ {
+    "type" : "UTPCable",
+    "timeDelay" : 1.0,
+    "costs" : 7.0,
+    "connections" : [ {
+      "type" : "switch",
+      "@id" : 1,
+      "timeDelay" : 3.0,
+      "costs" : 2.0,
+      "id" : "714f656b-5fbe-4603-afbd-42023de3abff",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 1.0,
+        "costs" : 7.0,
+        "connections" : [ 1, {
+          "type" : "firewall",
+          "@id" : 2,
+          "timeDelay" : 6.0,
+          "costs" : 9.0,
+          "id" : "0af53bd0-e313-41f3-9fd4-4e0396ba99d6",
+          "connections" : [ {
+            "type" : "coaxialCable",
+            "timeDelay" : 12.0,
+            "costs" : 15.0,
+            "connections" : [ 2, {
+              "type" : "pc",
+              "@id" : 3,
+              "timeDelay" : 5.0,
+              "costs" : 7.0,
+              "id" : "4eca9c64-4120-44bf-b348-6e7789c4a994",
+              "connections" : [ {
+                "type" : "STPCable",
+                "timeDelay" : 8.0,
+                "costs" : 13.0,
+                "connections" : [ {
+                  "type" : "hub",
+                  "@id" : 4,
+                  "timeDelay" : 3.0,
+                  "costs" : 4.0,
+                  "connections" : [ {
+                    "type" : "STPCable",
+                    "timeDelay" : 8.0,
+                    "costs" : 13.0,
+                    "connections" : [ 4, 3 ]
+                  } ],
+                  "id" : "3fdefeef-c6b6-4546-940b-21fd6f2476fd"
+                }, 3 ]
+              } ],
+              "ipAddress" : "49.89.192.41"
+            } ]
+          } ],
+          "ipAddress" : "44.153.80.220"
+        } ]
+      } ],
+      "ipAddress" : "115.211.213.31"
+    }, 2 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 4.0,
+    "costs" : 3.0,
+    "connections" : [ {
+      "type" : "hub",
+      "@id" : 5,
+      "timeDelay" : 1.0,
+      "costs" : 8.0,
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 9.0,
+        "costs" : 11.0,
+        "connections" : [ 5, {
+          "type" : "pc",
+          "@id" : 6,
+          "timeDelay" : 1.0,
+          "costs" : 3.0,
+          "id" : "83f42394-cf4a-4386-8a0d-7a205d66bfd1",
+          "connections" : [ {
+            "type" : "UTPCable",
+            "timeDelay" : 6.0,
+            "costs" : 5.0,
+            "connections" : [ 6, {
+              "type" : "hub",
+              "@id" : 7,
+              "timeDelay" : 8.0,
+              "costs" : 9.0,
+              "connections" : [ {
+                "type" : "UTPCable",
+                "timeDelay" : 6.0,
+                "costs" : 5.0,
+                "connections" : [ 6, 7 ]
+              }, {
+                "type" : "STPCable",
+                "timeDelay" : 1.0,
+                "costs" : 8.0,
+                "connections" : [ 7, {
+                  "type" : "switch",
+                  "@id" : 8,
+                  "timeDelay" : 2.0,
+                  "costs" : 5.0,
+                  "id" : "dd2ea706-ab6d-43c1-ba27-926ce366a00d",
+                  "connections" : [ {
+                    "type" : "UTPCable",
+                    "timeDelay" : 2.0,
+                    "costs" : 3.0,
+                    "connections" : [ {
+                      "type" : "pc",
+                      "@id" : 9,
+                      "timeDelay" : 5.0,
+                      "costs" : 3.0,
+                      "id" : "7b1f85a6-bc59-4389-b8a8-9bbbc4844052",
+                      "connections" : [ {
+                        "type" : "coaxialCable",
+                        "timeDelay" : 4.0,
+                        "costs" : 3.0,
+                        "connections" : [ 9, {
+                          "type" : "router",
+                          "@id" : 10,
+                          "timeDelay" : 1.0,
+                          "costs" : 4.0,
+                          "id" : "f1d8b453-2755-4305-a6d4-e362d519deca",
+                          "connections" : [ {
+                            "type" : "coaxialCable",
+                            "timeDelay" : 4.0,
+                            "costs" : 1.0,
+                            "connections" : [ 10, 4 ]
+                          } ],
+                          "ipAddress" : "10.234.129.186"
+                        } ]
+                      } ],
+                      "ipAddress" : "59.209.132.120"
+                    }, 8 ]
+                  }, {
+                    "type" : "UTPCable",
+                    "timeDelay" : 3.0,
+                    "costs" : 6.0,
+                    "connections" : [ 8, 4 ]
+                  } ],
+                  "ipAddress" : "127.100.244.170"
+                } ]
+              } ],
+              "id" : "88d54590-db1c-4ba1-9e33-e92ee2e17e98"
+            } ]
+          }, {
+            "type" : "coaxialCable",
+            "timeDelay" : 4.0,
+            "costs" : 9.0,
+            "connections" : [ 6, 9 ]
+          } ],
+          "ipAddress" : "43.40.91.211"
+        } ]
+      } ],
+      "id" : "c8e467e1-c5fb-443a-88ba-cd05ab75239f"
+    }, {
+      "type" : "firewall",
+      "@id" : 11,
+      "timeDelay" : 4.0,
+      "costs" : 2.0,
+      "id" : "2071013e-39a5-4f08-9c43-5442b621e6e8",
+      "connections" : [ {
+        "type" : "coaxialCable",
+        "timeDelay" : 1.0,
+        "costs" : 4.0,
+        "connections" : [ 11, {
+          "type" : "hub",
+          "@id" : 12,
+          "timeDelay" : 2.0,
+          "costs" : 4.0,
+          "connections" : [ {
+            "type" : "coaxialCable",
+            "timeDelay" : 5.0,
+            "costs" : 6.0,
+            "connections" : [ 12, {
+              "type" : "router",
+              "@id" : 13,
+              "timeDelay" : 8.0,
+              "costs" : 7.0,
+              "id" : "d8ec6297-6688-4b66-b5a1-3bd40aa092f7",
+              "connections" : [ {
+                "type" : "UTPCable",
+                "timeDelay" : 11.0,
+                "costs" : 5.0,
+                "connections" : [ 13, 8 ]
+              }, {
+                "type" : "coaxialCable",
+                "timeDelay" : 5.0,
+                "costs" : 5.0,
+                "connections" : [ 13, 10 ]
+              } ],
+              "ipAddress" : "37.217.150.102"
+            } ]
+          }, {
+            "type" : "STPCable",
+            "timeDelay" : 10.0,
+            "costs" : 8.0,
+            "connections" : [ 12, 7 ]
+          } ],
+          "id" : "22b33394-7f84-474f-bc88-65b3ece6dccf"
+        } ]
+      } ],
+      "ipAddress" : "29.84.40.72"
+    } ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 3.0,
+    "costs" : 1.0,
+    "connections" : [ {
+      "type" : "switch",
+      "@id" : 14,
+      "timeDelay" : 1.0,
+      "costs" : 3.0,
+      "id" : "3d950a8b-ab56-43c7-b4d4-e80302adc098",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 4.0,
+        "costs" : 5.0,
+        "connections" : [ 14, {
+          "type" : "pc",
+          "@id" : 15,
+          "timeDelay" : 9.0,
+          "costs" : 5.0,
+          "id" : "bb57e4ee-b4bf-4ec1-b7f6-a16fa3285016",
+          "connections" : [ {
+            "type" : "UTPCable",
+            "timeDelay" : 7.0,
+            "costs" : 3.0,
+            "connections" : [ 15, 6 ]
+          } ],
+          "ipAddress" : "251.90.180.18"
+        } ]
+      } ],
+      "ipAddress" : "162.227.162.111"
+    }, {
+      "type" : "router",
+      "@id" : 16,
+      "timeDelay" : 4.0,
+      "costs" : 6.0,
+      "id" : "0ec2b2ae-2353-401f-a56c-2ee24ee9697a",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 12.0,
+        "costs" : 10.0,
+        "connections" : [ 16, {
+          "type" : "router",
+          "@id" : 17,
+          "timeDelay" : 4.0,
+          "costs" : 2.0,
+          "id" : "fe0d6bab-6f82-49d6-a01c-92025ddd5340",
+          "connections" : [ {
+            "type" : "STPCable",
+            "timeDelay" : 7.0,
+            "costs" : 2.0,
+            "connections" : [ 17, 13 ]
+          }, {
+            "type" : "UTPCable",
+            "timeDelay" : 8.0,
+            "costs" : 3.0,
+            "connections" : [ 17, 7 ]
+          } ],
+          "ipAddress" : "103.125.82.238"
+        } ]
+      }, {
+        "type" : "UTPCable",
+        "timeDelay" : 4.0,
+        "costs" : 5.0,
+        "connections" : [ 16, 11 ]
+      } ],
+      "ipAddress" : "137.211.92.138"
+    } ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 12.0,
+    "costs" : 15.0,
+    "connections" : [ 2, 3 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 3.0,
+    "costs" : 6.0,
+    "connections" : [ 8, 4 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 5.0,
+    "costs" : 3.0,
+    "connections" : [ 14, 5 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 7.0,
+    "costs" : 3.0,
+    "connections" : [ 15, 6 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 1.0,
+    "costs" : 1.0,
+    "connections" : [ 17, 2 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 4.0,
+    "costs" : 9.0,
+    "connections" : [ 6, 9 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 4.0,
+    "costs" : 5.0,
+    "connections" : [ 16, 11 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 8.0,
+    "costs" : 13.0,
+    "connections" : [ 4, 3 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 10.0,
+    "costs" : 8.0,
+    "connections" : [ 12, 7 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 9.0,
+    "costs" : 11.0,
+    "connections" : [ 5, 6 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 8.0,
+    "costs" : 3.0,
+    "connections" : [ 17, 7 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 1.0,
+    "costs" : 8.0,
+    "connections" : [ 7, 8 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 2.0,
+    "costs" : 9.0,
+    "connections" : [ 2, {
+      "type" : "firewall",
+      "@id" : 18,
+      "timeDelay" : 1.0,
+      "costs" : 3.0,
+      "id" : "38a411a3-a578-4e1b-b56d-46e64a3072f5",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 10.0,
+        "costs" : 8.0,
+        "connections" : [ 18, 3 ]
+      } ],
+      "ipAddress" : "70.102.224.229"
+    } ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 2.0,
+    "costs" : 3.0,
+    "connections" : [ 9, 8 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 12.0,
+    "costs" : 10.0,
+    "connections" : [ 16, 17 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 1.0,
+    "costs" : 4.0,
+    "connections" : [ 11, 12 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 7.0,
+    "costs" : 2.0,
+    "connections" : [ 17, 13 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 16.0,
+    "costs" : 6.0,
+    "connections" : [ {
+      "type" : "switch",
+      "@id" : 19,
+      "timeDelay" : 7.0,
+      "costs" : 2.0,
+      "id" : "b691bf56-2e0d-4901-920e-6633fa2dbe90",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 16.0,
+        "costs" : 6.0,
+        "connections" : [ 19, 18 ]
+      } ],
+      "ipAddress" : "183.199.200.119"
+    }, 18 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 4.0,
+    "costs" : 3.0,
+    "connections" : [ 9, 10 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 10.0,
+    "costs" : 8.0,
+    "connections" : [ 18, 3 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 4.0,
+    "costs" : 1.0,
+    "connections" : [ 10, 4 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 5.0,
+    "costs" : 6.0,
+    "connections" : [ 12, 13 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 4.0,
+    "costs" : 5.0,
+    "connections" : [ 2, 19 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 6.0,
+    "costs" : 5.0,
+    "connections" : [ 6, 7 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 8.0,
+    "costs" : 5.0,
+    "connections" : [ 16, 1 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 7.0,
+    "costs" : 5.0,
+    "connections" : [ 15, 12 ]
+  }, {
+    "type" : "coaxialCable",
+    "timeDelay" : 5.0,
+    "costs" : 5.0,
+    "connections" : [ 13, 10 ]
+  }, {
+    "type" : "STPCable",
+    "timeDelay" : 1.0,
+    "costs" : 4.0,
+    "connections" : [ 1, 19 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 4.0,
+    "costs" : 5.0,
+    "connections" : [ 14, 15 ]
+  }, {
+    "type" : "UTPCable",
+    "timeDelay" : 11.0,
+    "costs" : 5.0,
+    "connections" : [ 13, 8 ]
+  } ],
+  "pathElements" : {
+    "bb57e4ee-b4bf-4ec1-b7f6-a16fa3285016" : {
+      "type" : "pc",
+      "timeDelay" : 9.0,
+      "costs" : 5.0,
+      "id" : "bb57e4ee-b4bf-4ec1-b7f6-a16fa3285016",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 7.0,
+        "costs" : 3.0,
+        "connections" : [ 15, 6 ]
+      } ],
+      "ipAddress" : "251.90.180.18"
+    },
+    "dd2ea706-ab6d-43c1-ba27-926ce366a00d" : {
+      "type" : "switch",
+      "timeDelay" : 2.0,
+      "costs" : 5.0,
+      "id" : "dd2ea706-ab6d-43c1-ba27-926ce366a00d",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 2.0,
+        "costs" : 3.0,
+        "connections" : [ 9, 8 ]
+      }, {
+        "type" : "UTPCable",
+        "timeDelay" : 3.0,
+        "costs" : 6.0,
+        "connections" : [ 8, 4 ]
+      } ],
+      "ipAddress" : "127.100.244.170"
+    },
+    "2071013e-39a5-4f08-9c43-5442b621e6e8" : {
+      "type" : "firewall",
+      "timeDelay" : 4.0,
+      "costs" : 2.0,
+      "id" : "2071013e-39a5-4f08-9c43-5442b621e6e8",
+      "connections" : [ {
+        "type" : "coaxialCable",
+        "timeDelay" : 1.0,
+        "costs" : 4.0,
+        "connections" : [ 11, 12 ]
+      } ],
+      "ipAddress" : "29.84.40.72"
+    },
+    "38a411a3-a578-4e1b-b56d-46e64a3072f5" : {
+      "type" : "firewall",
+      "timeDelay" : 1.0,
+      "costs" : 3.0,
+      "id" : "38a411a3-a578-4e1b-b56d-46e64a3072f5",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 10.0,
+        "costs" : 8.0,
+        "connections" : [ 18, 3 ]
+      } ],
+      "ipAddress" : "70.102.224.229"
+    },
+    "b691bf56-2e0d-4901-920e-6633fa2dbe90" : {
+      "type" : "switch",
+      "timeDelay" : 7.0,
+      "costs" : 2.0,
+      "id" : "b691bf56-2e0d-4901-920e-6633fa2dbe90",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 16.0,
+        "costs" : 6.0,
+        "connections" : [ 19, 18 ]
+      } ],
+      "ipAddress" : "183.199.200.119"
+    },
+    "7b1f85a6-bc59-4389-b8a8-9bbbc4844052" : {
+      "type" : "pc",
+      "timeDelay" : 5.0,
+      "costs" : 3.0,
+      "id" : "7b1f85a6-bc59-4389-b8a8-9bbbc4844052",
+      "connections" : [ {
+        "type" : "coaxialCable",
+        "timeDelay" : 4.0,
+        "costs" : 3.0,
+        "connections" : [ 9, 10 ]
+      } ],
+      "ipAddress" : "59.209.132.120"
+    },
+    "3d950a8b-ab56-43c7-b4d4-e80302adc098" : {
+      "type" : "switch",
+      "timeDelay" : 1.0,
+      "costs" : 3.0,
+      "id" : "3d950a8b-ab56-43c7-b4d4-e80302adc098",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 4.0,
+        "costs" : 5.0,
+        "connections" : [ 14, 15 ]
+      } ],
+      "ipAddress" : "162.227.162.111"
+    },
+    "3fdefeef-c6b6-4546-940b-21fd6f2476fd" : {
+      "type" : "hub",
+      "timeDelay" : 3.0,
+      "costs" : 4.0,
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 8.0,
+        "costs" : 13.0,
+        "connections" : [ 4, 3 ]
+      } ],
+      "id" : "3fdefeef-c6b6-4546-940b-21fd6f2476fd"
+    },
+    "c8e467e1-c5fb-443a-88ba-cd05ab75239f" : {
+      "type" : "hub",
+      "timeDelay" : 1.0,
+      "costs" : 8.0,
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 9.0,
+        "costs" : 11.0,
+        "connections" : [ 5, 6 ]
+      } ],
+      "id" : "c8e467e1-c5fb-443a-88ba-cd05ab75239f"
+    },
+    "fe0d6bab-6f82-49d6-a01c-92025ddd5340" : {
+      "type" : "router",
+      "timeDelay" : 4.0,
+      "costs" : 2.0,
+      "id" : "fe0d6bab-6f82-49d6-a01c-92025ddd5340",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 7.0,
+        "costs" : 2.0,
+        "connections" : [ 17, 13 ]
+      }, {
+        "type" : "UTPCable",
+        "timeDelay" : 8.0,
+        "costs" : 3.0,
+        "connections" : [ 17, 7 ]
+      } ],
+      "ipAddress" : "103.125.82.238"
+    },
+    "83f42394-cf4a-4386-8a0d-7a205d66bfd1" : {
+      "type" : "pc",
+      "timeDelay" : 1.0,
+      "costs" : 3.0,
+      "id" : "83f42394-cf4a-4386-8a0d-7a205d66bfd1",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 6.0,
+        "costs" : 5.0,
+        "connections" : [ 6, 7 ]
+      }, {
+        "type" : "coaxialCable",
+        "timeDelay" : 4.0,
+        "costs" : 9.0,
+        "connections" : [ 6, 9 ]
+      } ],
+      "ipAddress" : "43.40.91.211"
+    },
+    "d8ec6297-6688-4b66-b5a1-3bd40aa092f7" : {
+      "type" : "router",
+      "timeDelay" : 8.0,
+      "costs" : 7.0,
+      "id" : "d8ec6297-6688-4b66-b5a1-3bd40aa092f7",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 11.0,
+        "costs" : 5.0,
+        "connections" : [ 13, 8 ]
+      }, {
+        "type" : "coaxialCable",
+        "timeDelay" : 5.0,
+        "costs" : 5.0,
+        "connections" : [ 13, 10 ]
+      } ],
+      "ipAddress" : "37.217.150.102"
+    },
+    "714f656b-5fbe-4603-afbd-42023de3abff" : {
+      "type" : "switch",
+      "timeDelay" : 3.0,
+      "costs" : 2.0,
+      "id" : "714f656b-5fbe-4603-afbd-42023de3abff",
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 1.0,
+        "costs" : 7.0,
+        "connections" : [ 1, 2 ]
+      } ],
+      "ipAddress" : "115.211.213.31"
+    },
+    "88d54590-db1c-4ba1-9e33-e92ee2e17e98" : {
+      "type" : "hub",
+      "timeDelay" : 8.0,
+      "costs" : 9.0,
+      "connections" : [ {
+        "type" : "UTPCable",
+        "timeDelay" : 6.0,
+        "costs" : 5.0,
+        "connections" : [ 6, 7 ]
+      }, {
+        "type" : "STPCable",
+        "timeDelay" : 1.0,
+        "costs" : 8.0,
+        "connections" : [ 7, 8 ]
+      } ],
+      "id" : "88d54590-db1c-4ba1-9e33-e92ee2e17e98"
+    },
+    "0ec2b2ae-2353-401f-a56c-2ee24ee9697a" : {
+      "type" : "router",
+      "timeDelay" : 4.0,
+      "costs" : 6.0,
+      "id" : "0ec2b2ae-2353-401f-a56c-2ee24ee9697a",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 12.0,
+        "costs" : 10.0,
+        "connections" : [ 16, 17 ]
+      }, {
+        "type" : "UTPCable",
+        "timeDelay" : 4.0,
+        "costs" : 5.0,
+        "connections" : [ 16, 11 ]
+      } ],
+      "ipAddress" : "137.211.92.138"
+    },
+    "22b33394-7f84-474f-bc88-65b3ece6dccf" : {
+      "type" : "hub",
+      "timeDelay" : 2.0,
+      "costs" : 4.0,
+      "connections" : [ {
+        "type" : "coaxialCable",
+        "timeDelay" : 5.0,
+        "costs" : 6.0,
+        "connections" : [ 12, 13 ]
+      }, {
+        "type" : "STPCable",
+        "timeDelay" : 10.0,
+        "costs" : 8.0,
+        "connections" : [ 12, 7 ]
+      } ],
+      "id" : "22b33394-7f84-474f-bc88-65b3ece6dccf"
+    },
+    "0af53bd0-e313-41f3-9fd4-4e0396ba99d6" : {
+      "type" : "firewall",
+      "timeDelay" : 6.0,
+      "costs" : 9.0,
+      "id" : "0af53bd0-e313-41f3-9fd4-4e0396ba99d6",
+      "connections" : [ {
+        "type" : "coaxialCable",
+        "timeDelay" : 12.0,
+        "costs" : 15.0,
+        "connections" : [ 2, 3 ]
+      } ],
+      "ipAddress" : "44.153.80.220"
+    },
+    "f1d8b453-2755-4305-a6d4-e362d519deca" : {
+      "type" : "router",
+      "timeDelay" : 1.0,
+      "costs" : 4.0,
+      "id" : "f1d8b453-2755-4305-a6d4-e362d519deca",
+      "connections" : [ {
+        "type" : "coaxialCable",
+        "timeDelay" : 4.0,
+        "costs" : 1.0,
+        "connections" : [ 10, 4 ]
+      } ],
+      "ipAddress" : "10.234.129.186"
+    },
+    "4eca9c64-4120-44bf-b348-6e7789c4a994" : {
+      "type" : "pc",
+      "timeDelay" : 5.0,
+      "costs" : 7.0,
+      "id" : "4eca9c64-4120-44bf-b348-6e7789c4a994",
+      "connections" : [ {
+        "type" : "STPCable",
+        "timeDelay" : 8.0,
+        "costs" : 13.0,
+        "connections" : [ 4, 3 ]
+      } ],
+      "ipAddress" : "49.89.192.41"
+    }
+  }
+}

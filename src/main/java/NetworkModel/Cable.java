@@ -1,8 +1,7 @@
 package NetworkModel;
-
 import com.fasterxml.jackson.annotation.*;
-
 import java.util.List;
+
 @JsonAutoDetect
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="type")
 @JsonSubTypes({

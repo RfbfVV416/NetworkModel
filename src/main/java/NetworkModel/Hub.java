@@ -1,8 +1,7 @@
 package NetworkModel;
-
 import com.fasterxml.jackson.annotation.JsonTypeName;
-
 import java.util.UUID;
+
 @JsonTypeName("hub")
 public class Hub extends PassiveElement{
     public Hub(){}
